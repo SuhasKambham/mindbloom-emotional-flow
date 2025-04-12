@@ -9,7 +9,159 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      cycle_tracking: {
+        Row: {
+          created_at: string
+          cycle_day: number
+          date: string
+          id: string
+          mood: string
+          notes: string | null
+          symptoms: string[]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          cycle_day: number
+          date: string
+          id?: string
+          mood: string
+          notes?: string | null
+          symptoms?: string[]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          cycle_day?: number
+          date?: string
+          id?: string
+          mood?: string
+          notes?: string | null
+          symptoms?: string[]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      goals: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          related_emotions: string[]
+          status: string
+          target_date: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          related_emotions?: string[]
+          status?: string
+          target_date?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          related_emotions?: string[]
+          status?: string
+          target_date?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      journal_entries: {
+        Row: {
+          content: string
+          created_at: string
+          date: string
+          id: string
+          is_private: boolean
+          mood: string
+          mood_intensity: number
+          tags: string[]
+          title: string | null
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          date: string
+          id?: string
+          is_private?: boolean
+          mood: string
+          mood_intensity: number
+          tags?: string[]
+          title?: string | null
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          date?: string
+          id?: string
+          is_private?: boolean
+          mood?: string
+          mood_intensity?: number
+          tags?: string[]
+          title?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mood_types: {
+        Row: {
+          color: string
+          created_at: string
+          emoji: string
+          id: string
+          name: string
+        }
+        Insert: {
+          color: string
+          created_at?: string
+          emoji: string
+          id?: string
+          name: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          emoji?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      private_entries: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
