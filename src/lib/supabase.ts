@@ -16,3 +16,4 @@ export type JournalEntry = Tables['journal_entries']['Row'];
 export type MoodType = Tables['mood_types']['Row'];
 export type GoalType = Tables['goals']['Row'];
 export type CycleData = Tables['cycle_tracking']['Row'];
+export type PrivateEntry = Tables['private_entries']['Row'];

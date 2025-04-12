@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card } from "@/components/ui/card";
@@ -76,7 +75,6 @@ const CycleTrackingPage = () => {
   const [selectedEntry, setSelectedEntry] = useState<CycleData | null>(null);
   const [confirmDialog, setConfirmDialog] = useState(false);
 
-  // Form state
   const [cycleDay, setCycleDay] = useState(1);
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [selectedMood, setSelectedMood] = useState("Neutral");
@@ -97,11 +95,9 @@ const CycleTrackingPage = () => {
       const start = startOfMonth(currentMonth);
       const end = endOfMonth(currentMonth);
       
-      // Format dates for Supabase query
       const startDateStr = format(start, "yyyy-MM-dd");
       const endDateStr = format(end, "yyyy-MM-dd");
       
-      // Fetch entries for the month
       const { data, error } = await supabase
         .from("cycle_tracking")
         .select("*")
@@ -142,20 +138,17 @@ const CycleTrackingPage = () => {
     
     setSelectedDate(date);
     
-    // Check if there's an entry for this date
     const entry = cycleData.find(data => 
       isSameDay(new Date(data.date), date)
     );
     
     if (entry) {
-      // Edit existing entry
       setSelectedEntry(entry);
       setCycleDay(entry.cycle_day);
       setSelectedSymptoms(entry.symptoms);
       setSelectedMood(entry.mood);
       setNotes(entry.notes || "");
     } else {
-      // New entry
       resetForm();
     }
     
@@ -184,7 +177,6 @@ const CycleTrackingPage = () => {
       };
 
       if (selectedEntry) {
-        // Update
         const { error } = await supabase
           .from("cycle_tracking")
           .update(entryData)
@@ -201,7 +193,6 @@ const CycleTrackingPage = () => {
           description: "Cycle data updated successfully",
         });
       } else {
-        // Create
         const { data, error } = await supabase
           .from("cycle_tracking")
           .insert([entryData])
@@ -290,12 +281,10 @@ const CycleTrackingPage = () => {
     
     if (!entry) return "";
     
-    // If period is tracked, highlight the date
     if (entry.symptoms.includes("period")) {
       return "bg-red-100 text-red-800 font-medium";
     }
     
-    // If there are other symptoms but no period
     if (entry.symptoms.length > 0) {
       return "bg-amber-50 text-amber-800";
     }
@@ -362,8 +351,7 @@ const CycleTrackingPage = () => {
                   booked: "font-medium",
                 }}
                 components={{
-                  Day: props => {
-                    const date = props.date;
+                  Day: ({ date, ...props }) => {
                     const dateClass = getDateEntryClass(date);
                     
                     return (
@@ -371,7 +359,7 @@ const CycleTrackingPage = () => {
                         className={`flex items-center justify-center h-9 w-9 ${dateClass}`}
                         {...props}
                       >
-                        {props.children}
+                        {props.day}
                       </div>
                     );
                   }
@@ -582,7 +570,6 @@ const CycleTrackingPage = () => {
         </div>
       )}
 
-      {/* Confirmation Dialog */}
       <Dialog open={confirmDialog} onOpenChange={setConfirmDialog}>
         <DialogContent>
           <DialogHeader>

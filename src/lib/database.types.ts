@@ -163,6 +163,38 @@ export interface Database {
         }
         Relationships: []
       }
+      private_entries: {
+        Row: {
+          id: string
+          created_at: string
+          user_id: string
+          title: string
+          content: string
+        }
+        Insert: {
+          id?: string
+          created_at?: string
+          user_id: string
+          title: string
+          content: string
+        }
+        Update: {
+          id?: string
+          created_at?: string
+          user_id?: string
+          title?: string
+          content?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "private_entries_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
