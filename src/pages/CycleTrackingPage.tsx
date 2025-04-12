@@ -351,15 +351,15 @@ const CycleTrackingPage = () => {
                   booked: "font-medium",
                 }}
                 components={{
-                  Day: ({ date, ...props }) => {
-                    const dateClass = getDateEntryClass(date);
+                  Day: (props) => {
+                    const dateClass = getDateEntryClass(props.date);
                     
                     return (
                       <div
                         className={`flex items-center justify-center h-9 w-9 ${dateClass}`}
                         {...props}
                       >
-                        {props.day}
+                        {props.date.getDate()}
                       </div>
                     );
                   }
