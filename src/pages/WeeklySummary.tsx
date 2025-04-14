@@ -316,13 +316,15 @@ const WeeklySummary = () => {
                 
                 {dailyCounts.length > 0 ? (
                   <ResponsiveContainer width="100%" height="100%">
-                    <ReBarChart data={dailyCounts}>
+                    <ReBarChart data={dailyCounts} margin={{ top: 5, right: 10, left: 10, bottom: 20 }}>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} />
                       <XAxis 
                         dataKey="date" 
                         tickFormatter={formatDayForChart} 
                         axisLine={false}
                         tickLine={false}
+                        dy={10}
+                        tick={{ fontSize: 12 }}
                       />
                       <YAxis 
                         allowDecimals={false}

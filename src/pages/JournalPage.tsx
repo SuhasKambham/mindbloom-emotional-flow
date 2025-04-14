@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card } from "@/components/ui/card";
@@ -77,7 +76,6 @@ const JournalPage = () => {
   const [isNewEntry, setIsNewEntry] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   
-  // Form state
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedMood, setSelectedMood] = useState("Neutral");
@@ -197,7 +195,6 @@ const JournalPage = () => {
           description: "Journal entry updated successfully",
         });
         
-        // Update local state
         setEntries(prev => 
           prev.map(entry => 
             entry.id === activeEntry.id 
@@ -207,7 +204,6 @@ const JournalPage = () => {
         );
       }
 
-      // Reset form
       setIsNewEntry(false);
       setActiveEntry(null);
       setTitle("");
@@ -246,7 +242,6 @@ const JournalPage = () => {
       setDeleteDialogOpen(false);
       setIsNewEntry(false);
       
-      // Reset form
       setTitle("");
       setContent("");
       setSelectedMood("Neutral");
@@ -296,7 +291,7 @@ const JournalPage = () => {
 
         <TabsContent value="entries" className="space-y-6">
           <div className="flex flex-col sm:flex-row justify-between gap-4 mb-6">
-            <div className="relative flex-1">
+            <div className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search entries by title, content, mood or tags..."
@@ -305,12 +300,6 @@ const JournalPage = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
-            <Button 
-              onClick={handleCreateNew}
-              className="bg-mindbloom-primary hover:bg-mindbloom-secondary"
-            >
-              <Edit className="mr-2 h-4 w-4" /> New Entry
-            </Button>
           </div>
 
           {loading ? (
