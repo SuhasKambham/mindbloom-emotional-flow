@@ -1,12 +1,11 @@
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabase";
 import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, getDay, addMonths, subMonths } from "date-fns";
 import { toast } from "@/components/ui/use-toast";
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Info } from "lucide-react";
+import { ChevronLeft, ChevronRight, Info } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface DayEntry {
@@ -275,7 +274,6 @@ const MoodCalendar = () => {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="card-title">Selected Day Details</h3>
-            <CalendarIcon className="h-5 w-5 text-mindbloom-primary" />
           </div>
           
           {selectedDay ? (
@@ -328,7 +326,6 @@ const MoodCalendar = () => {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="card-title">Mood Legend</h3>
-            <Info className="h-5 w-5 text-mindbloom-primary" />
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
